@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caption Result</title>
+</head>
+<body>
+    <h1>Results</h1>
+    <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 500px;"><br><br>
+
+    <h3>Caption (English):</h3>
+    <p>{{ caption }}</p>
+    <audio controls>
+        <source src="{{ audio_en }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <h3>Translated Caption:</h3>
+    <p>{{ translated_caption }}</p>
+    <audio controls>
+        <source src="{{ audio_translated }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <br><br>
+    <a href="{{ url_for('index') }}">Upload Another Image</a>
+</body>
+</html>

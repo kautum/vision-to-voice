@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+static/uploads/*
+static/audio/*
+!static/uploads/.gitkeep
+!static/audio/.gitkeep
+*.pth
+.env

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Captioning</title>
+</head>
+<body>
+  <h1>Upload an Image or Use Webcam</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    <h3>Select Image</h3>
+    <input type="file" name="image" accept="image/*">
+    <br><br>
+    <h3>Or Capture from Webcam</h3>
+    <video id="webcam" autoplay playsinline width="320" height="240"></video>
+    <br>
+    <button type="button" onclick="capture()">Capture</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <input type="hidden" name="webcam_image" id="webcam_image">
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('canvas');
+    const webcamImageInput = document.getElementById('webcam_image');
+
+    // Start webcam stream
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error('Error accessing webcam:', err);
+      });
+
+    function capture() {
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0);
+      const dataUrl = canvas.toDataURL('image/png');
+      webcamImageInput.value = dataUrl;
+    }
+  </script>
+</body>
+</html>

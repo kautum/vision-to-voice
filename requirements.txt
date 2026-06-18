@@ -1,0 +1,6 @@
+torch
+transformers
+Pillow
+flask
+gtts
+huggingface-hub
